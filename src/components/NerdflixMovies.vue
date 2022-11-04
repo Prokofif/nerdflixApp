@@ -3,7 +3,7 @@
     <div class="header">
       <h1>Nerdflix</h1>
       <h2>Movies</h2>
-      <div class="filter">
+      <div class="sortMovies">
         <p>Sort by</p>
         <button @click="sortRating" class="sortRating">Rating</button>
         <button @click="sortAlphabet" class="sortTitle">A-Z</button>
@@ -38,23 +38,47 @@ export default {
   data() {
     return {
       movies: json.data.movies,
+      ascAplabet: true,
+      ascRating: true,
     };
   },
   methods: {
     sortAlphabet() {
-      this.movies = this.movies.sort((a, b) => {
-        if (a.title < b.title) {
-          return -1;
-        }
-      });
+      if (this.ascAplabet) {
+        this.movies = this.movies.sort((a, b) => {
+          if (a.title < b.title) {
+            return -1;
+          }
+        });
+        this.ascAplabet = false;
+      } else {
+         this.movies = this.movies.sort((a, b) => {
+          if (a.title > b.title) {
+            return -1;
+          }
+        });
+        this.ascAplabet = true;
+      }
+
     },
 
     sortRating() {
-      this.movies = this.movies.sort((a, b) => {
-        if (a.rating < b.rating) {
-          return -1;
-        }
-      });
+      if (this.ascRating){
+        this.movies = this.movies.sort((a, b) => {
+          if (a.rating > b.rating) {
+            return -1;
+          }
+        });
+        this.ascRating = false;
+      } else {
+        this.movies = this.movies.sort((a, b) => {
+          if (a.rating < b.rating) {
+            return -1;
+          }
+        });
+        
+        this.ascRating = true;
+      }
     },
   },
 };
@@ -96,8 +120,7 @@ img {
   --bs-card-border-color: #1d1d1d !important;
 }
 div.card-body {
-  min-width: 182px;
-  min-height: 200px;
+  min-width: 213.97px;
   background: #1d1d1d;
   color: white;
 }
@@ -154,10 +177,10 @@ p.card-text > p {
   text-align: center;
 }
 
-.filter {
+.sortMovies {
   color: white;
 }
-.filter > p {
+.sortMovies > p {
   background: #131313;
   margin: 0;
   padding: 0;
