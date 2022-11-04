@@ -105,7 +105,7 @@ export default {
     addFavoritMovie(id, favorit) {
       if (favorit) {
         this.movies[id].favorit = false;
-
+      console.log(this.movies[id])
         this.favoritMovies--;
       } else {
         this.movies[id].favorit = true;
@@ -121,7 +121,7 @@ h1 {
   color: #e50914;
   text-align: center;
   background: #131313;
-
+  font-family: "Source Sans Pro Bold";
   text-transform: uppercase;
 }
 h2 {
@@ -162,6 +162,7 @@ div.card-body {
 p.card-text {
   max-width: 182px;
   padding: 1.5rem 0.5rem;
+  text-align: left;
 }
 p.card-text > p {
   margin: 0;
