@@ -16,6 +16,11 @@
             <img :src="movies[index].urlPoster" class="movie-image" />
             <div class="overlay">
               <div class="rating">{{ movies[index].rating }}</div>
+              <i
+                class="fa fa-star-o starFavorite"
+                style="font-size: 1.3rem"
+                @click="addFavoritMovie(index)"
+              ></i>
             </div>
           </div>
 
@@ -43,6 +48,7 @@ export default {
     };
   },
   methods: {
+    //sorting algorithms ascending and descending by movie name (Alphabet)
     sortAlphabet() {
       if (this.ascAplabet) {
         this.movies = this.movies.sort((a, b) => {
@@ -52,18 +58,18 @@ export default {
         });
         this.ascAplabet = false;
       } else {
-         this.movies = this.movies.sort((a, b) => {
+        this.movies = this.movies.sort((a, b) => {
           if (a.title > b.title) {
             return -1;
           }
         });
         this.ascAplabet = true;
       }
-
     },
 
+    //sorting algorithms ascending and descending by Movie Rating
     sortRating() {
-      if (this.ascRating){
+      if (this.ascRating) {
         this.movies = this.movies.sort((a, b) => {
           if (a.rating > b.rating) {
             return -1;
@@ -76,9 +82,15 @@ export default {
             return -1;
           }
         });
-        
+
         this.ascRating = true;
       }
+    },
+
+    //add starred movie to list of favorites. 
+    addFavoritMovie(id) {
+      this.movies[id].document.querySelector('.starFavorite').style.color = 'red';
+      // console.log(document.querySelector('.starFavorite'))
     },
   },
 };
@@ -89,6 +101,7 @@ h1 {
   color: #e50914;
   text-align: center;
   background: #131313;
+
   text-transform: uppercase;
 }
 h2 {
@@ -105,6 +118,7 @@ h2 {
 }
 .movie_container {
   background: #1d1d1d;
+  text-align: center;
 }
 
 .movie_card {
@@ -160,7 +174,8 @@ p.card-text > p {
   border-radius: 6px;
 }
 
-.rating-container:hover .overlay {
+.rating-container:hover .overlay,
+.starFavorite {
   opacity: 1;
   width: 100%;
 }
@@ -181,6 +196,7 @@ p.card-text > p {
   color: white;
 }
 .sortMovies > p {
+  font-size: 0.95rem;
   background: #131313;
   margin: 0;
   padding: 0;
@@ -190,7 +206,7 @@ p.card-text > p {
   opacity: 0.5;
   left: 70.07%;
   right: 19.44%;
-  top: 8.65%;
+  top: 8.95%;
   bottom: 85.13%;
 }
 
@@ -207,13 +223,19 @@ p.card-text > p {
 .sortTitle {
   left: 70.07%;
   right: 19.44%;
-  top: 11.65%;
-  bottom: 85.13%;
+  top: 12%;
+  bottom: 84.53%;
 }
 .sortRating {
   left: 82.64%;
   right: 6.88%;
-  top: 11.65%;
-  bottom: 85.13%;
+  top: 12%;
+  bottom: 84.53%;
+}
+
+.starFavorite {
+  position: absolute;
+  left: 38%;
+  top: 5%;
 }
 </style>
