@@ -3,6 +3,11 @@
     <div class="header">
       <h1>Nerdflix</h1>
       <h2>Movies</h2>
+      <div class="filter">
+        <p>Sort by</p>
+        <button @click="sortRating" class="sortRating">Rating</button>
+        <button @click="sortAlphabet" class="sortTitle">A-Z</button>
+      </div>
     </div>
     <div class="movie_container">
       <div class="movie_card" v-for="(movie, index) in movies" :key="index">
@@ -22,7 +27,6 @@
           </b-card-text>
         </b-card>
       </div>
-      <button @click="mov">ok</button>
     </div>
   </div>
 </template>
@@ -36,7 +40,23 @@ export default {
       movies: json.data.movies,
     };
   },
-  methods: {},
+  methods: {
+    sortAlphabet() {
+      this.movies = this.movies.sort((a, b) => {
+        if (a.title < b.title) {
+          return -1;
+        }
+      });
+    },
+
+    sortRating() {
+      this.movies = this.movies.sort((a, b) => {
+        if (a.rating < b.rating) {
+          return -1;
+        }
+      });
+    },
+  },
 };
 </script>
 
@@ -91,17 +111,16 @@ p.card-text > p {
   opacity: 49.88%;
 }
 
-
-/* raiting styles */
 .rating-container {
-  position: relative; 
+  position: relative;
 }
 
 .movie-image {
-  display: block; 
+  display: block;
   height: auto;
 }
 
+/* raiting style */
 .overlay {
   position: absolute;
   top: 0;
@@ -112,7 +131,9 @@ p.card-text > p {
   width: 100%;
   opacity: 0;
   transition: 0.5s ease;
-  backdrop-filter: blur(2.46496px); /* Note: backdrop-filter has minimal browser support */
+  backdrop-filter: blur(
+    2.46496px
+  ); /* Note: backdrop-filter has minimal browser support */
   border-radius: 6px;
 }
 
@@ -131,5 +152,37 @@ p.card-text > p {
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
   text-align: center;
+}
+
+.filter {
+  color: white;
+}
+.filter > p {
+  background: #131313;
+  margin: 0;
+  padding: 0;
+}
+
+.sortTitle,
+.sortRating {
+  color: white;
+  box-sizing: border-box;
+  position: absolute;
+  background: #131313;
+  border: 1px solid #2e2e2e;
+  border-radius: 6px;
+}
+
+.sortTitle {
+  left: 82.64%;
+  right: 6.88%;
+  top: 11.65%;
+  bottom: 85.13%; 
+}
+.sortRating { 
+  left: 70.07%;
+  right: 19.44%;
+  top: 11.65%;
+  bottom: 85.13%;
 }
 </style>
