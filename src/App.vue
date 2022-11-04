@@ -8,7 +8,6 @@
 
 <script> 
 
-
 import NerdflixMovies from './components/NerdflixMovies.vue'
 
 export default {
@@ -20,9 +19,13 @@ export default {
 </script>
 
 <style>
+@font-face {
+  font-family: "Source Sans Pro";
+  src: url(./fonts/SourceSansPro-Regular.ttf) format("truetype");
+}
 
 #app {
-  font-family: sans-serif;
+  font-family: 'Source Sans Pro', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

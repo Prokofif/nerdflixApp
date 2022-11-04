@@ -10,7 +10,7 @@
       <div class="sortMovies">
         <p>Sort by</p>
         <button @click="sortRating" class="sortRating">Rating</button>
-        <button @click="sortAlphabet" class="sortTitle">A-Z</button>
+        <button @click="sortAlphabet" class="sortTitle">Title A-Z</button>
       </div>
     </div>
     <div class="movie_container">
@@ -18,7 +18,7 @@
         <b-card>
           <div class="rating-container">
             <img :src="movies[index].urlPoster" class="movie-image" />
-            <div class="overlay">
+            <div class="rating-overlay">
               <div class="rating">{{ movies[index].rating }}</div>
               <div v-if="movies[index].favorit">
                 <i
@@ -101,7 +101,7 @@ export default {
       }
     },
 
-    //add starred movie to list of favorites.
+    //add starred movie to a list of favorites/liked.
     addFavoritMovie(id, favorit) {
       if (favorit) {
         this.movies[id].favorit = false;
@@ -128,7 +128,6 @@ h2 {
   text-align: left;
   color: white;
   background: #171717;
-  padding: 1rem;
 }
 
 h1,
@@ -139,6 +138,7 @@ h2 {
 .movie_container {
   background: #1d1d1d;
   text-align: center;
+  padding-top: 2rem;
 }
 
 .movie_card {
@@ -178,7 +178,7 @@ p.card-text > p {
 }
 
 /* raiting style */
-.overlay {
+.rating-overlay {
   position: absolute;
   top: 0;
   bottom: 0;
@@ -194,7 +194,7 @@ p.card-text > p {
   border-radius: 6px;
 }
 
-.rating-container:hover .overlay,
+.rating-container:hover .rating-overlay,
 .starFavorite {
   opacity: 1;
   width: 100%;
