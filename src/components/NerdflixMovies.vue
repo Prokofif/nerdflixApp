@@ -3,6 +3,10 @@
     <div class="header">
       <h1>Nerdflix</h1>
       <h2>Movies</h2>
+      <div class="starHeader">
+        <i class="fa fa-star-o" style="font-size: 1.8rem; color: #f8e71c"></i
+        >{{ this.favoritMovies }}
+      </div>
       <div class="sortMovies">
         <p>Sort by</p>
         <button @click="sortRating" class="sortRating">Rating</button>
@@ -16,11 +20,20 @@
             <img :src="movies[index].urlPoster" class="movie-image" />
             <div class="overlay">
               <div class="rating">{{ movies[index].rating }}</div>
-              <i
-                class="fa fa-star-o starFavorite"
-                style="font-size: 1.3rem"
-                @click="addFavoritMovie(index)"
-              ></i>
+              <div v-if="movies[index].favorit">
+                <i
+                  class="fa fa-star-o starFavorite"
+                  style="font-size: 1.8rem; color: #f8e71c"
+                  @click="addFavoritMovie(index, movies[index].favorit)"
+                ></i>
+              </div>
+              <div v-else>
+                <i
+                  class="fa fa-star-o starFavorite"
+                  style="font-size: 1.8rem; color: white"
+                  @click="addFavoritMovie(index, movies[index].favorit)"
+                ></i>
+              </div>
             </div>
           </div>
 
@@ -45,6 +58,7 @@ export default {
       movies: json.data.movies,
       ascAplabet: true,
       ascRating: true,
+      favoritMovies: 0,
     };
   },
   methods: {
@@ -87,10 +101,16 @@ export default {
       }
     },
 
-    //add starred movie to list of favorites. 
-    addFavoritMovie(id) {
-      this.movies[id].document.querySelector('.starFavorite').style.color = 'red';
-      // console.log(document.querySelector('.starFavorite'))
+    //add starred movie to list of favorites.
+    addFavoritMovie(id, favorit) {
+      if (favorit) {
+        this.movies[id].favorit = false;
+
+        this.favoritMovies--;
+      } else {
+        this.movies[id].favorit = true;
+        this.favoritMovies++;
+      }
     },
   },
 };
@@ -178,6 +198,7 @@ p.card-text > p {
 .starFavorite {
   opacity: 1;
   width: 100%;
+  color: white;
 }
 
 .rating {
@@ -237,5 +258,22 @@ p.card-text > p {
   position: absolute;
   left: 38%;
   top: 5%;
+}
+.starHeader {
+  font-size: 1.3rem;
+  color: white;
+  position: absolute;
+  left: 95%;
+  top: 5%;
+}
+i {
+  font-size: 1.8rem;
+}
+
+@media only screen and (max-width: 800px) {
+
+  .starHeader {
+    left: 90%;
+  }
 }
 </style>
