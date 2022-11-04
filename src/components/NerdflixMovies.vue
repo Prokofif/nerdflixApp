@@ -1,20 +1,23 @@
 <template>
   <div class="nerdflix">
     <div class="header">
+      <!-- <button>Homepage</button>
+      <button>Series</button>
+      <button>Movies</button> -->
       <h1>Nerdflix</h1>
-      <h2>Movies</h2>
-      <div class="starHeader">
+      <h2 class="movies-header">Movies</h2>
+      <div class="star-header">
         <i class="fa fa-star-o" style="font-size: 1.8rem; color: #f8e71c"></i
-        >{{ this.favoritMovies }}
+        ><span class="favorit-movies">{{ this.favoritMovies }} </span>
       </div>
-      <div class="sortMovies">
+      <div class="sort-movies">
         <p>Sort by</p>
-        <button @click="sortRating" class="sortRating">Rating</button>
-        <button @click="sortAlphabet" class="sortTitle">Title A-Z</button>
+        <button @click="sortRating" class="sort-rating">Rating</button>
+        <button @click="sortAlphabet" class="sort-title">Title A-Z</button>
       </div>
     </div>
-    <div class="movie_container">
-      <div class="movie_card" v-for="(movie, index) in movies" :key="index">
+    <div class="movie-container">
+      <div class="movie-card" v-for="(movie, index) in movies" :key="index">
         <b-card>
           <div class="rating-container">
             <img :src="movies[index].urlPoster" class="movie-image" />
@@ -22,14 +25,14 @@
               <div class="rating">{{ movies[index].rating }}</div>
               <div v-if="movies[index].favorit">
                 <i
-                  class="fa fa-star-o starFavorite"
+                  class="fa fa-star-o star-favorite"
                   style="font-size: 1.8rem; color: #f8e71c"
                   @click="addFavoritMovie(index, movies[index].favorit)"
                 ></i>
               </div>
               <div v-else>
                 <i
-                  class="fa fa-star-o starFavorite"
+                  class="fa fa-star-o star-favorite"
                   style="font-size: 1.8rem; color: white"
                   @click="addFavoritMovie(index, movies[index].favorit)"
                 ></i>
@@ -130,20 +133,22 @@ h2 {
   background: #171717;
 }
 
+.movies-header{
+  padding-left: 5%;
+}
+
 h1,
 h2 {
   margin-bottom: 0 !important;
   padding: 1rem;
 }
-.movie_container {
+.movie-container {
   background: #1d1d1d;
   text-align: center;
   padding-top: 2rem;
 }
 
-.movie_card {
-  display: flex;
-
+.movie-card {
   display: inline-block;
   margin: 1rem;
 }
@@ -196,7 +201,7 @@ p.card-text > p {
 }
 
 .rating-container:hover .rating-overlay,
-.starFavorite {
+.star-favorite {
   opacity: 1;
   width: 100%;
   color: white;
@@ -214,10 +219,14 @@ p.card-text > p {
   text-align: center;
 }
 
-.sortMovies {
+.favorit-movies{
+  padding-left: 0.5rem;
+}
+
+.sort-movies {
   color: white;
 }
-.sortMovies > p {
+.sort-movies > p {
   font-size: 0.95rem;
   background: #131313;
   margin: 0;
@@ -232,8 +241,8 @@ p.card-text > p {
   bottom: 85.13%;
 }
 
-.sortTitle,
-.sortRating {
+.sort-title,
+.sort-rating {
   color: white;
   box-sizing: border-box;
   position: absolute;
@@ -242,30 +251,32 @@ p.card-text > p {
   border-radius: 6px;
 }
 
-.sortTitle {
+.sort-title {
   left: 70.07%;
   right: 19.44%;
   top: 12%;
   bottom: 84.53%;
 }
-.sortRating {
+.sort-rating {
   left: 82.64%;
   right: 6.88%;
   top: 12%;
   bottom: 84.53%;
 }
 
-.starFavorite {
+.star-favorite {
   position: absolute;
   left: 38%;
   top: 5%;
 }
-.starHeader {
+.star-header {
   font-size: 1.3rem;
   color: white;
   position: absolute;
   left: 95%;
   top: 5%;
+  
+  display: inline-block;
 }
 i {
   font-size: 1.8rem;
@@ -273,7 +284,7 @@ i {
 
 @media only screen and (max-width: 800px) {
 
-  .starHeader {
+  .star-header {
     left: 90%;
   }
 }
