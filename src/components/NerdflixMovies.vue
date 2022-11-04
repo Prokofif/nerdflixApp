@@ -161,6 +161,14 @@ p.card-text > p {
   background: #131313;
   margin: 0;
   padding: 0;
+  color: white;
+
+  position: absolute;
+  opacity: 0.5;
+  left: 70.07%;
+  right: 19.44%;
+  top: 8.65%;
+  bottom: 85.13%;
 }
 
 .sortTitle,
@@ -174,14 +182,14 @@ p.card-text > p {
 }
 
 .sortTitle {
-  left: 82.64%;
-  right: 6.88%;
-  top: 11.65%;
-  bottom: 85.13%; 
-}
-.sortRating { 
   left: 70.07%;
   right: 19.44%;
+  top: 11.65%;
+  bottom: 85.13%;
+}
+.sortRating {
+  left: 82.64%;
+  right: 6.88%;
   top: 11.65%;
   bottom: 85.13%;
 }
