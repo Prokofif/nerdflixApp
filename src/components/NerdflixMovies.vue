@@ -5,11 +5,16 @@
       <h2>Movies</h2>
     </div>
     <div class="movie_container">
-      <div class="movie_cards" v-for="(movie, index) in movies" :key="index">
+      <div class="movie_cards col-12" v-for="(movie, index) in movies" :key="index">
         <b-card>
-          {{ movies[index].title }}
-          {{ movies[index].rating }}
+          <!-- <div class="raiting">
+            {{ movies[index].rating }}
+          </div> -->
           <img :src="movies[index].urlPoster" />
+          <p>
+            {{ movies[index].title }}
+          </p>
+          {{ movies[index].year }}
         </b-card>
       </div>
       <button @click="mov">ok</button>
